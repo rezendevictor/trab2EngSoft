@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:pokecenter/Assets/Colors.dart';
 import 'view/home.view.dart';
 
 void main() {

@@ -90,9 +90,8 @@ class _LoginViewState extends BaseViewState {
 
     _formKey.currentState.save();
 
-    bool sucesso = await widget.controller.autenticarComEmail();
+    //bool sucesso = await widget.controller.autenticarComEmail();
 
-    if (sucesso) {}
     Navigator.of(context).pop();
   }
 
