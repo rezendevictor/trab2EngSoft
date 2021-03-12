@@ -23,8 +23,8 @@ class _listagemViewState extends BaseViewState<ListagemView> {
   Widget body() {
     return Column(
       children: [
-        _streamSelecionarLista(),
-        _streamLista(),
+        _selectionColumn(),
+        //_streamLista(),
       ],
     );
   }
@@ -36,6 +36,31 @@ class _listagemViewState extends BaseViewState<ListagemView> {
         builder: (context, snapshot) {
           return _lista(snapshot.data);
         }
+    );
+  }
+
+  Widget _selectionColumn(){
+    return Padding(
+      padding: const EdgeInsets.only(top:20.0,right: 20,left: 20),
+      child: Container(
+        decoration: BoxDecoration(
+          color: Colors.black26,
+          borderRadius: BorderRadius.circular(200),
+        ),
+        child: Padding(
+          padding: const EdgeInsets.only(left: 50.0),
+          child: Row(
+            children: [
+              Text("Selecione a lista a ser exibida:",
+              style: TextStyle(color: Colors.white,
+              fontSize: 20),),
+              Padding(
+                  padding: EdgeInsets.only(left: 200),
+                  child: _streamSelecionarLista()),
+            ],
+          ),
+        ),
+      ),
     );
   }
 
@@ -64,13 +89,14 @@ class _listagemViewState extends BaseViewState<ListagemView> {
 
   Widget _selecionarLista(String selected) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10,top: 8),
+      padding: const EdgeInsets.only(left: 10,top: 8,bottom: 8),
       child: DropdownButton<String>(
+        hint: Text("Selecione Lista"),
         value: selected,
-        icon: Icon(Icons.arrow_downward),
+        icon: Icon(Icons.arrow_downward,color: Colors.white,),
         iconSize: 24,
         elevation: 16,
-        style: TextStyle(color: Colors.black,fontSize: 22),
+        style: TextStyle(color: Colors.black,fontSize: 18),
         underline: Container(
           height: 2,
           color: Colors.red,

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pokecenter/view/galeria.view.dart';
 import 'view/home.view.dart';
 
 void main() {
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.pink,
       ),
-      home: HomeView(),
+      home: GaleriaView(),
     );
   }
 }
