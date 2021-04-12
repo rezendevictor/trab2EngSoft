@@ -31,11 +31,13 @@ class _listagemViewState extends BaseViewState<ListagemView> {
 
 
   Widget _streamLista() {
-    StreamBuilder(
-        stream: _controller.streamInfos,
-        builder: (context, snapshot) {
-          return _lista(snapshot.data);
-        }
+    Container(
+      child: StreamBuilder(
+          stream: _controller.streamInfos,
+          builder: (context, snapshot) {
+            return _lista(snapshot.data);
+          }
+      ),
     );
   }
 

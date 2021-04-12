@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pokecenter/assets/Colors.dart';
 import 'package:pokecenter/bases/base.controller.dart';
+import 'package:pokecenter/view/agendamento.view.dart';
 import 'package:pokecenter/view/cadastro_enderecos.view.dart';
 import 'package:pokecenter/view/galeria.view.dart';
 import 'package:pokecenter/view/home.view.dart';
@@ -31,9 +32,10 @@ abstract class BaseViewState<View extends BaseViewStateful>
   Widget build(BuildContext context) {
     onBuild();
     return WillPopScope(
+      onWillPop: () { return; },
       child: Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.red.shade900,
+          backgroundColor: Color(0xFF3e5d58),
           title: Center(child: Text(this.title())),
           actions: [_loginButton(context)],
         ),
@@ -66,7 +68,7 @@ abstract class BaseViewState<View extends BaseViewStateful>
               style: TextStyle(color: Colors.white, fontSize: 25),
             ),
             decoration: BoxDecoration(
-                color: Colors.red.shade900,
+                color: Color(0xFF3e5d58),
                 image: DecorationImage(
                     fit: BoxFit.fill,
                     image: AssetImage('assets/images/cover.jpg'))),
@@ -89,7 +91,7 @@ abstract class BaseViewState<View extends BaseViewStateful>
           ListTile(
             leading: Icon(Icons.border_color),
             title: Text('Agendamento'),
-            onTap: () => {navigation(CadastroView(), context)},
+            onTap: () => {navigation(AgendamentoView(), context)},
           ),
           logado
               ? ListTile(
@@ -126,12 +128,12 @@ abstract class BaseViewState<View extends BaseViewStateful>
   Widget _background() {
     return Container(
       decoration: new BoxDecoration(
-          color: Colors.amber,
+          color: Color(0xFF5d616a),
         image: DecorationImage(
           image: AssetImage(
-            "lib/assets/connected.png"
+            "lib/assets/grunge-wall.png"
           ),
-          fit: BoxFit.contain
+          fit: BoxFit.fill
         )
       ),
     );
