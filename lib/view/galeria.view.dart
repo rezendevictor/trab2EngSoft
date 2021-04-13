@@ -11,7 +11,6 @@ class GaleriaView extends BaseViewStateful {
 
 class _galeriaViewState extends BaseViewState<GaleriaView> {
   GaleriaController _controller = new GaleriaController();
-  List<String> litems = ["1", "2", "Third", "4"];
 
   @override
   title() => "Galeria";
@@ -24,21 +23,16 @@ class _galeriaViewState extends BaseViewState<GaleriaView> {
   Widget photosList() {
     return Padding(
       padding: EdgeInsets.only(left:20.0,right: 20),
-      child: Expanded(
-        child: ListView(
-          children: [
-            Center(
-              child: ListView.builder(
-                  itemCount: litems.length,
-                  itemBuilder: (context, index) {
-                    return ListTile(
-                      title: Text('${litems[index]}'),
-                    );
-                  }),
-            ),
-          ],
-        ),
-      ),
+      child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 20, childAspectRatio: 3/2),
+          itemCount: _controller.galeryPhotos.length,
+          itemBuilder: (BuildContext context, int index) {
+            return new GridTile(
+              child: Image(
+                image: AssetImage('${_controller.galeryPhotos[index]}'),
+              ),
+            );
+          }),
     );
   }
 }
