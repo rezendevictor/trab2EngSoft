@@ -73,7 +73,6 @@ class _listagemViewState extends BaseViewState<ListagemView> {
   Widget _streamSelecionarLista() {
     return StreamBuilder(
         stream: _controller.categoriaAtual,
-        initialData: "Selecione a lista",
         builder: (context, snapshot) {
           return _selecionarLista(snapshot.data);
         }
