@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:pokecenter/assets/Colors.dart';
 import 'package:pokecenter/bases/base.controller.dart';
 import 'package:pokecenter/view/agendamento.view.dart';
 import 'package:pokecenter/view/cadastro_enderecos.view.dart';

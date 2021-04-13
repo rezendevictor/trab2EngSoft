@@ -2,7 +2,6 @@
 
 import 'package:pokecenter/bases/base.controller.dart';
 import 'package:pokecenter/model/agenda.model.dart';
-import 'package:pokecenter/model/medico.model.dart';
 import 'package:rxdart/rxdart.dart';
 
 class AgendamentoController extends BaseController{
@@ -32,6 +31,7 @@ class AgendamentoController extends BaseController{
 
   void diaSelecionada(DateTime selecionado) {
     local.dia = selecionado;
+    local.data = this.diaehora();
     _streamAgenda.add(local);
     _streamDia.sink.add(selecionado);
   }
@@ -87,7 +87,7 @@ class AgendamentoController extends BaseController{
   String diaehora(){
     String dia = local.dia.day.toString();
     String mes = local.dia.month.toString();
-    return dia+" / "+mes;
+    return dia+"/"+mes;
 
 
   }

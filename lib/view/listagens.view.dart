@@ -12,6 +12,7 @@ class ListagemView extends BaseViewStateful {
 }
 
 
+
 class _listagemViewState extends BaseViewState<ListagemView> {
 
   ListagemController _controller = new ListagemController();

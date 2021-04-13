@@ -51,9 +51,10 @@ class _AgendamentoViewState extends BaseViewState {
          Row(
            children: [
              _oqueequem(),
-             _streamConsulta()
+             _streamConsulta(),
            ],
          ),
+
         _botaoSalvar(),
       ],
     );
@@ -288,20 +289,62 @@ class _AgendamentoViewState extends BaseViewState {
     return StreamBuilder<Object>(
       stream: _controller.agendaAtual,
       builder: (context, snapshot) {
-        return _consultaVisualization(snapshot.data);
+        return _consultaVisualization();
       }
     );
 }
 
 
-  Widget _consultaVisualization(AgendaModel agenda){
+  Widget _consultaVisualization(){
     return Container(
       child: Column(
         children: [
-          Text("Especialidade :" + agenda.especialidade),
-          Text("Medico :" + agenda.medico),
-          Text("Dia :" + _controller.diaehora()),
-          Text("Hora :" + agenda.hora),
+        Text( "Datalhes do Agentamento : ",
+        style: TextStyle(
+          fontSize: 20,
+          fontWeight: FontWeight.bold,
+        ),),
+
+          Row(
+            children: [
+              Text( "Especialidade: ",
+              style: TextStyle(
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),),
+              Text( _controller.local.especialidade),
+            ],
+          ),
+          Row(
+            children: [
+              Text( "Médico: ",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),),
+              Text(  _controller.local.medico),
+            ],
+          ),
+          Row(
+            children: [
+              Text( "Data: ",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),),
+              Text( _controller.local.data),
+            ],
+          ),
+          Row(
+            children: [
+              Text( "Hora: ",
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                ),),
+              Text( _controller.local.hora),
+            ],
+          ),
         ],
       ),
     );

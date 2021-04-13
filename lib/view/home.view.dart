@@ -1,10 +1,8 @@
-import 'dart:math';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pokecenter/bases/base.view.dart';
 import 'package:pokecenter/controller/home.controller.dart';
-import 'package:spinner/spinner.dart';
 
 class HomeView extends BaseViewStateful {
   HomeView({
