@@ -78,7 +78,6 @@ class _AgendamentoViewState extends BaseViewState {
   Widget _streamSelecionarLista() {
     return StreamBuilder(
         stream: _controller.categoriaAtual,
-        initialData: "Selecione a lista",
         builder: (context, snapshot) {
           return _selecionarLista(snapshot.data);
         }
@@ -116,7 +115,6 @@ class _AgendamentoViewState extends BaseViewState {
   Widget _streamSelecionarMedico() {
     return StreamBuilder(
         stream: _controller.medicoaAtual,
-        initialData: "Selecione o Medico",
         builder: (context, snapshot) {
           return _selecionarMedico(snapshot.data);
         }
@@ -154,13 +152,7 @@ class _AgendamentoViewState extends BaseViewState {
   Widget _botaoSalvar() {
     return ElevatedButton(
       onPressed: () {
-        // Validate returns true if the form is valid, or false otherwise.
-        if (_formKey.currentState.validate()) {
-          // If the form is valid, display a snackbar. In the real world,
-          // you'd often call a server or save the information in a database.
-          ScaffoldMessenger.of(context)
-              .showSnackBar(SnackBar(content: Text('Processing Data')));
-        }
+        print(_controller.local);
       },
       child: Text('Agendar'),
     );
@@ -350,10 +342,4 @@ class _AgendamentoViewState extends BaseViewState {
     );
 
   }
-
-
-
-
-
-
 }
