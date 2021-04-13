@@ -23,8 +23,8 @@ class _listagemViewState extends BaseViewState<ListagemView> {
   Widget body() {
     return Column(
       children: [
-        _selectionColumn(),
-        //_streamLista(),
+
+        SizedBox(child: _streamLista()),
       ],
     );
   }
@@ -33,9 +33,10 @@ class _listagemViewState extends BaseViewState<ListagemView> {
   Widget _streamLista() {
     Container(
       child: StreamBuilder(
+          initialData: _controller.teste,
           stream: _controller.streamInfos,
           builder: (context, snapshot) {
-            return _lista(snapshot.data);
+            return _photosList(snapshot.data);
           }
       ),
     );
@@ -67,16 +68,6 @@ class _listagemViewState extends BaseViewState<ListagemView> {
   }
 
 
-  Widget _lista(List infos) {
-    ListView.builder(
-      itemCount: infos.length,
-      itemBuilder: (context, index) {
-        return ListTile(
-          title: Text('${infos[index]}'),
-        );
-      },
-    );
-  }
 
   Widget _streamSelecionarLista() {
     return StreamBuilder(
@@ -87,7 +78,6 @@ class _listagemViewState extends BaseViewState<ListagemView> {
         }
     );
   }
-
 
   Widget _selecionarLista(String selected) {
     return Padding(
@@ -114,5 +104,25 @@ class _listagemViewState extends BaseViewState<ListagemView> {
       ),
     );
   }
+
+
+
+  Widget _photosList(List lista) {
+    return Padding(
+      padding: EdgeInsets.only(left:20.0,right: 20),
+      child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 20, childAspectRatio: 3/2),
+          itemCount: lista.length,
+          itemBuilder: (BuildContext context, int index) {
+            return new GridTile(
+              child: Text(
+                "Teste"
+              )
+            );
+          }),
+    );
+  }
+
+
 
 }
