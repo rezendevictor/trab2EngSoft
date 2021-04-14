@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pokecenter/bases/base.controller.dart';
 import 'package:pokecenter/view/agendamento.view.dart';
 import 'package:pokecenter/view/cadastro_enderecos.view.dart';
+import 'package:pokecenter/view/cadastro_usuario.view.dart';
 import 'package:pokecenter/view/galeria.view.dart';
 import 'package:pokecenter/view/home.view.dart';
 import 'package:pokecenter/view/listagens.view.dart';
@@ -81,6 +82,11 @@ abstract class BaseViewState<View extends BaseViewStateful>
             leading: Icon(Icons.photo),
             title: Text('Galeria'),
             onTap: () => {navigation(GaleriaView(), context)},
+          ),
+          ListTile(
+            leading: Icon(Icons.border_color),
+            title: Text('Cadastro de Usuários'),
+            onTap: () => {navigation(CadastroUsuarioView(), context)},
           ),
           ListTile(
             leading: Icon(Icons.border_color),

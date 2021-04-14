@@ -11,8 +11,6 @@ class ListagemView extends BaseViewStateful {
   _listagemViewState createState() => _listagemViewState();
 }
 
-
-
 class _listagemViewState extends BaseViewState<ListagemView> {
 
   ListagemController _controller = new ListagemController();
@@ -25,13 +23,19 @@ class _listagemViewState extends BaseViewState<ListagemView> {
     return Column(
       children: [
         _selectionColumn(),
+        Expanded(
+          child: SizedBox(child: Card(
+            child: _streamLista(),
+          )),
+        ),
       ],
     );
   }
 
 
   Widget _streamLista() {
-    Container(
+    return Container(
+      // child: _photosList(_controller.teste),
       child: StreamBuilder(
           initialData: _controller.teste,
           stream: _controller.streamInfos,
@@ -90,7 +94,7 @@ class _listagemViewState extends BaseViewState<ListagemView> {
         style: TextStyle(color: Colors.black,fontSize: 18),
         underline: Container(
           height: 2,
-          color: Colors.red,
+          color: Colors.black,
         ),
         onChanged: (String newValue) {_controller.categoriaSelecionada(newValue);},
         items: _controller.listasDisponiveis
@@ -108,14 +112,14 @@ class _listagemViewState extends BaseViewState<ListagemView> {
 
   Widget _photosList(List lista) {
     return Padding(
-      padding: EdgeInsets.only(left:20.0,right: 20),
-      child: GridView.builder(
-          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 20, childAspectRatio: 3/2),
+      padding: EdgeInsets.only(left:20.0, right: 20),
+      child: ListView.builder(
+          // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 20, childAspectRatio: 3/2),
           itemCount: lista.length,
           itemBuilder: (BuildContext context, int index) {
-            return new GridTile(
-              child: Text(
-                "Teste"
+            return new ListTile(
+              title: Text(
+                lista[index]
               )
             );
           }),
