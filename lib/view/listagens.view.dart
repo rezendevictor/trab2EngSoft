@@ -165,32 +165,59 @@ class _listagemViewState extends BaseViewState<ListagemView> {
       children: [
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Nome: "+item['title']),
+          child: Text("Nome: "+item['name']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Cep: "+item['title']),
+          child: Text("Cep: "+item['cep']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Logradouro: "+item['title']),
+          child: Text("Logradouro: "+item['street']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Bairro: "+item['title']),
+          child: Text("Bairro: "+item['neighbor']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Cidade: "+item['title']),
+          child: Text("Cidade: "+item['city']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Estado: "+item['title']),
+          child: Text("Estado: "+item['state']),
+        )
+      ],
+    );
+  }
+  Widget _renderAppointment(item){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Código: "+item['code']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Cidade: "+item['title']),
+          child: Text("Data: "+item['date']),
         ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Nome: "+item['name']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Email: "+item['email']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Telefone: "+item['phone']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Id Doutor: "+item['doctorId']),
+        )
       ],
     );
   }
@@ -201,43 +228,39 @@ class _listagemViewState extends BaseViewState<ListagemView> {
       children: [
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Nome: "+item['title']),
+          child: Text("Nome: "+item['name']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Email: "+item['title']),
+          child: Text("Email: "+item['email']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Peso: "+item['title']),
+          child: Text("Peso: "+item['weight'].toString()),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Altura: "+item['title']),
+          child: Text("Altura: "+item['height'].toString()),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Cep: "+item['title']),
+          child: Text("Cep: "+item['cep'].toString()),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Logradouro: "+item['title']),
+          child: Text("Logradouro: "+item['street']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Bairro: "+item['title']),
+          child: Text("Bairro: "+item['neighbor']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Cidade: "+item['title']),
+          child: Text("Cidade: "+item['city']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Estado: "+item['title']),
-        ),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text("Cidade: "+item['title']),
+          child: Text("Estado: "+item['state']),
         ),
       ],
     );
@@ -256,7 +279,7 @@ class _listagemViewState extends BaseViewState<ListagemView> {
       case 'Endereços':
         return _renderDoctor(item);
       case 'Agendamentos':
-        return _renderDoctor(item);
+        return _renderAppointment(item);
       case 'Meus Agendamentos':
         return _renderDoctor(item);
       default:
