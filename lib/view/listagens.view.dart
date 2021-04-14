@@ -49,8 +49,7 @@ class _listagemViewState extends BaseViewState<ListagemView> {
   }
 
   fetchListByCategory(String newValue) async {
-    Response response = await _controller.fetchListByCategory(newValue);
-    Iterable responseData = json.decode(response.body);
+    Iterable responseData = await _controller.fetchListByCategory(newValue);
 
     setState(() {
       selecaoAtual = newValue;
@@ -126,40 +125,36 @@ class _listagemViewState extends BaseViewState<ListagemView> {
       children: [
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Nome: "+item['title']),
+          child: Text("Nome: "+item['name']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Especialidade: "+item['title']),
+          child: Text("Especialidade: "+item['specialty']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("CRM: "+item['title']),
+          child: Text("CRM: "+item['crm']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Cep: "+item['title']),
+          child: Text("Cep: "+item['cep']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Logradouro: "+item['title']),
+          child: Text("Logradouro: "+item['street']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Bairro: "+item['title']),
+          child: Text("Bairro: "+item['complement']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Cidade: "+item['title']),
+          child: Text("Cidade: "+item['city']),
         ),
         Align(
           alignment: Alignment.centerLeft,
-          child: Text("Estado: "+item['title']),
-        ),
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Text("Cidade: "+item['title']),
-        ),
+          child: Text("Estado: "+item['state']),
+        )
       ],
     );
   }
@@ -256,6 +251,8 @@ class _listagemViewState extends BaseViewState<ListagemView> {
       case 'Médicos':
       case 'todos':
         return _renderDoctor(item);
+      case 'Funcionários':
+        return _renderEmployee(item);
       case 'Endereços':
         return _renderDoctor(item);
       case 'Agendamentos':
