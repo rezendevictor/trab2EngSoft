@@ -225,6 +225,7 @@ class _CadastroUsuarioViewState extends BaseViewState {
     if (_key.currentState.validate()) {
       // Sem erros na validação
       _key.currentState.save();
+
       // print("Nome $nome");
       // print("Ceclular $celular");
       // print("Email $email");

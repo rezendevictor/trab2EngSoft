@@ -306,6 +306,4 @@ class _listagemViewState extends BaseViewState<ListagemView> {
     );
   }
 
-
-
 }

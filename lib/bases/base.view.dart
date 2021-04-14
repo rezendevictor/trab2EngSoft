@@ -83,28 +83,38 @@ abstract class BaseViewState<View extends BaseViewStateful>
             title: Text('Galeria'),
             onTap: () => {navigation(GaleriaView(), context)},
           ),
-          ListTile(
-            leading: Icon(Icons.assignment_ind),
-            title: Text('Cadastro de Usuários'),
-            onTap: () => {navigation(CadastroUsuarioView(), context)},
+          Visibility(
+            visible: logado,
+            child: ListTile(
+              leading: Icon(Icons.assignment_ind),
+              title: Text('Cadastro de Usuários'),
+              onTap: () => {navigation(CadastroUsuarioView(), context)},
+            ),
           ),
-          ListTile(
-            leading: Icon(Icons.house_siding_sharp),
-            title: Text('Cadastro Endereços'),
-            onTap: () => {navigation(CadastroView(), context)},
+          Visibility(
+            visible: logado,
+            child: ListTile(
+              leading: Icon(Icons.house_siding_sharp),
+              title: Text('Cadastro Endereços'),
+              onTap: () => {navigation(CadastroView(), context)},
+            ),
           ),
-          ListTile(
-            leading: Icon(Icons.book),
-            title: Text('Agendamento'),
-            onTap: () => {navigation(AgendamentoView(), context)},
+          Visibility(
+            visible: logado,
+            child: ListTile(
+              leading: Icon(Icons.book),
+              title: Text('Agendamento'),
+              onTap: () => {navigation(AgendamentoView(), context)},
+            ),
           ),
-          logado
-              ? ListTile(
-                  leading: Icon(Icons.list_alt),
-                  title: Text('Listagens'),
-                  onTap: () => {navigation(ListagemView(), context)},
-                )
-              : {},
+          Visibility(
+            visible: logado,
+            child: ListTile(
+                    leading: Icon(Icons.list_alt),
+                    title: Text('Listagens'),
+                    onTap: () => {navigation(ListagemView(), context)},
+                  ),
+          ),
         ],
       ),
     );
