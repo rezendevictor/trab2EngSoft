@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:pokecenter/bases/base.view.dart';
 import 'package:pokecenter/controller/agendamento.controller.dart';
-import 'package:pokecenter/model/agenda.model.dart';
-import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class AgendamentoView extends BaseViewStateful {
@@ -48,58 +46,65 @@ class _AgendamentoViewState extends BaseViewState {
   Widget form() {
     return Column(
       children: [
-         Row(
-           children: [
-             _oqueequem(),
-             _streamConsulta(),
-           ],
-         ),
-
-        _botaoSalvar(),
+        Center(child: _selections()),
+        Center(child: _botaoSalvar()),
       ],
     );
   }
 
-
-  Widget _oqueequem(){
-    return Column(
-        children:
-        [
-          _streamSelecionarLista(),
-          _streamSelecionarMedico(),
-          selectDate(),
-          _streamSelecionarHora()
-        ],
-    );
-
+  Widget _selections() {
+    return Row(children: [
+      _oqueequem(),
+      _streamConsulta(),
+    ]);
   }
 
+  Widget _oqueequem() {
+    return Padding(
+      padding: const EdgeInsets.all(20.0),
+      child: SizedBox(
+        width: 300,
+        child: Column(
+          children: [
+            _streamSelecionarLista(),
+            _streamSelecionarMedico(),
+            selectDate(),
+            _streamSelecionarHora()
+          ],
+        ),
+      ),
+    );
+  }
 
   Widget _streamSelecionarLista() {
     return StreamBuilder(
         stream: _controller.categoriaAtual,
         builder: (context, snapshot) {
           return _selecionarLista(snapshot.data);
-        }
-    );
+        });
   }
-
 
   Widget _selecionarLista(String selected) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10,top: 8,bottom: 8),
+      padding: const EdgeInsets.only(left: 10, top: 8, bottom: 8),
       child: DropdownButton<String>(
+        isExpanded: true,
         hint: Text("Selecione Especialidade"),
         value: selected,
-        icon: Icon(Icons.arrow_downward,color: Colors.black,),
+        icon: Icon(
+          Icons.arrow_downward,
+          color: Colors.black,
+        ),
         iconSize: 24,
         elevation: 16,
-        style: TextStyle(color: Colors.black,fontSize: 18),
+        style: TextStyle(color: Colors.black, fontSize: 18),
         underline: Container(
           height: 2,
           color: Colors.blueGrey,
         ),
-        onChanged: (String newValue) {_controller.categoriaSelecionada(newValue);},
+        onChanged: (String newValue) {
+          _controller.categoriaSelecionada(newValue);
+        },
         items: _controller.areasDisponiveis
             .map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
@@ -111,32 +116,35 @@ class _AgendamentoViewState extends BaseViewState {
     );
   }
 
-
   Widget _streamSelecionarMedico() {
     return StreamBuilder(
         stream: _controller.medicoaAtual,
         builder: (context, snapshot) {
           return _selecionarMedico(snapshot.data);
-        }
-    );
+        });
   }
-
 
   Widget _selecionarMedico(String selected) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10,top: 8,bottom: 8),
+      padding: const EdgeInsets.only(left: 10, top: 8, bottom: 8),
       child: DropdownButton<String>(
+        isExpanded: true,
         hint: Text("Selecione o Médico"),
         value: selected,
-        icon: Icon(Icons.arrow_downward,color: Colors.black,),
+        icon: Icon(
+          Icons.arrow_downward,
+          color: Colors.black,
+        ),
         iconSize: 24,
         elevation: 16,
-        style: TextStyle(color: Colors.black,fontSize: 18),
+        style: TextStyle(color: Colors.black, fontSize: 18),
         underline: Container(
           height: 2,
           color: Colors.blueGrey,
         ),
-        onChanged: (String newValue) {_controller..medicosSelecionada(newValue);},
+        onChanged: (String newValue) {
+          _controller..medicosSelecionada(newValue);
+        },
         items: _controller.medicosDisponiveis
             .map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
@@ -148,13 +156,23 @@ class _AgendamentoViewState extends BaseViewState {
     );
   }
 
-
   Widget _botaoSalvar() {
-    return ElevatedButton(
-      onPressed: () {
-        print(_controller.local);
-      },
-      child: Text('Agendar'),
+    return Container(
+      width: 150,
+      height: 50,
+      color: Colors.blueGrey,
+      child: Center(
+        child: InkWell(
+          onTap: () {
+            print(_controller.local);
+          },
+          child: Text(
+            'Agendar',
+            style: TextStyle(
+                color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
+          ),
+        ),
+      ),
     );
   }
 
@@ -210,33 +228,35 @@ class _AgendamentoViewState extends BaseViewState {
         ]);
   }
 
-
-
   Widget _streamSelecionarHora() {
     return StreamBuilder(
         stream: _controller.horarioAtual,
         builder: (context, snapshot) {
           return _selecionarHora(snapshot.data);
-        }
-    );
+        });
   }
-
 
   Widget _selecionarHora(String selected) {
     return Padding(
-      padding: const EdgeInsets.only(left: 10,top: 8,bottom: 8),
+      padding: const EdgeInsets.only(left: 10, top: 8, bottom: 8),
       child: DropdownButton<String>(
+        isExpanded: true,
         hint: Text("Horário"),
         value: selected,
-        icon: Icon(Icons.arrow_downward,color: Colors.black,),
+        icon: Icon(
+          Icons.arrow_downward,
+          color: Colors.black,
+        ),
         iconSize: 24,
         elevation: 16,
-        style: TextStyle(color: Colors.black,fontSize: 18),
+        style: TextStyle(color: Colors.black, fontSize: 18),
         underline: Container(
           height: 2,
           color: Colors.blueGrey,
         ),
-        onChanged: (String newValue) {_controller.horariosSelecionada(newValue);},
+        onChanged: (String newValue) {
+          _controller.horariosSelecionada(newValue);
+        },
         items: _controller.horariosDisponiveis
             .map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
@@ -248,25 +268,28 @@ class _AgendamentoViewState extends BaseViewState {
     );
   }
 
-
-
   Widget selectDate() {
     return Center(
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: <Widget>[
-          RaisedButton(
-            onPressed: () => _selectDate(context),
-            child: Text('Selecionar Data'),
+          Container(
+            decoration: BoxDecoration(color: Colors.blueGrey),
+            child: TextButton(
+              onPressed: () => _selectDate(context),
+              child: Text(
+                'Selecionar Data',
+                style: TextStyle(color: Colors.black, fontSize: 15),
+              ),
+            ),
           ),
         ],
       ),
     );
   }
 
-
-
   DateTime currentDate = DateTime.now();
+
   Future<void> _selectDate(BuildContext context) async {
     final DateTime pickedDate = await showDatePicker(
         context: context,
@@ -277,69 +300,107 @@ class _AgendamentoViewState extends BaseViewState {
       _controller.diaSelecionada(pickedDate);
   }
 
-  Widget _streamConsulta(){
+  Widget _streamConsulta() {
     return StreamBuilder<Object>(
-      stream: _controller.agendaAtual,
-      builder: (context, snapshot) {
-        return _consultaVisualization();
-      }
-    );
-}
+        stream: _controller.agendaAtual,
+        builder: (context, snapshot) {
+          return SizedBox(
+              height: 300, width: 400, child: _consultaVisualization());
+        });
+  }
 
-
-  Widget _consultaVisualization(){
+  Widget _consultaVisualization() {
     return Container(
       child: Column(
         children: [
-        Text( "Datalhes do Agentamento : ",
-        style: TextStyle(
-          fontSize: 20,
-          fontWeight: FontWeight.bold,
-        ),),
-
-          Row(
-            children: [
-              Text( "Especialidade: ",
+          Padding(
+            padding: EdgeInsets.only(bottom: 20, top: 50),
+            child: Text(
+              "Datalhes do Agentamento : ",
               style: TextStyle(
-                fontSize: 15,
+                fontSize: 25,
                 fontWeight: FontWeight.bold,
-              ),),
-              Text( _controller.local.especialidade),
+              ),
+            ),
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Especialidade: ",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Text(
+                _controller.local.especialidade,
+                style: TextStyle(
+                  fontSize: 20,
+                ),
+              ),
+            ],
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Row(
+              children: [
+                Text(
+                  "Médico: ",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                Text(
+                  _controller.local.medico,
+                  style: TextStyle(
+                    fontSize: 20,
+                  ),
+                )
+              ],
+            ),
+          ),
+          Row(
+            children: [
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Data: ",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Text(_controller.local.data,
+                  style: TextStyle(
+                    fontSize: 20,
+                  )),
             ],
           ),
           Row(
             children: [
-              Text( "Médico: ",
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),),
-              Text(  _controller.local.medico),
-            ],
-          ),
-          Row(
-            children: [
-              Text( "Data: ",
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),),
-              Text( _controller.local.data),
-            ],
-          ),
-          Row(
-            children: [
-              Text( "Hora: ",
-                style: TextStyle(
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold,
-                ),),
-              Text( _controller.local.hora),
+              Padding(
+                padding: const EdgeInsets.all(8.0),
+                child: Text(
+                  "Hora: ",
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              Text(_controller.local.hora,
+                  style: TextStyle(
+                    fontSize: 20,
+                  )),
             ],
           ),
         ],
       ),
     );
-
   }
 }

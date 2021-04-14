@@ -84,23 +84,23 @@ abstract class BaseViewState<View extends BaseViewStateful>
             onTap: () => {navigation(GaleriaView(), context)},
           ),
           ListTile(
-            leading: Icon(Icons.border_color),
+            leading: Icon(Icons.assignment_ind),
             title: Text('Cadastro de Usuários'),
             onTap: () => {navigation(CadastroUsuarioView(), context)},
           ),
           ListTile(
-            leading: Icon(Icons.border_color),
+            leading: Icon(Icons.house_siding_sharp),
             title: Text('Cadastro Endereços'),
             onTap: () => {navigation(CadastroView(), context)},
           ),
           ListTile(
-            leading: Icon(Icons.border_color),
+            leading: Icon(Icons.book),
             title: Text('Agendamento'),
             onTap: () => {navigation(AgendamentoView(), context)},
           ),
           logado
               ? ListTile(
-                  leading: Icon(Icons.border_color),
+                  leading: Icon(Icons.list_alt),
                   title: Text('Listagens'),
                   onTap: () => {navigation(ListagemView(), context)},
                 )
