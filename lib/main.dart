@@ -3,6 +3,7 @@ import 'package:pokecenter/view/agendamento.view.dart';
 import 'package:pokecenter/view/galeria.view.dart';
 import 'view/home.view.dart';
 
+
 void main() {
   runApp(MyApp());
 }

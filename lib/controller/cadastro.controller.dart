@@ -37,13 +37,5 @@ class cadastroController extends BaseController{
       }),
     );
 
-,
-  "street":"rua XXXXX",
-  "contractDate":"10/11/2018",
-  "salary":"4000",
-  "username":"chriscmcanta",
-  "password":"123456",
-  "email":"chris@gmail.com",
-  "isDoc": "false"
 
 }

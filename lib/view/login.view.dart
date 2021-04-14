@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:pokecenter/bases/base.view.dart';
 import 'package:pokecenter/controller/login.controller.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:pokecenter/globals.dart' as globals;
 
 class LoginView extends BaseViewStateful {
   LoginView({
@@ -80,7 +81,9 @@ class _LoginViewState extends BaseViewState {
                   child: MaterialButton(
                       minWidth: MediaQuery.of(context).size.width,
                       padding: EdgeInsets.fromLTRB(20.0, 15.0, 20.0, 15.0),
-                      onPressed: () {},
+                      onPressed: () {
+                        globals.isLoggedIn = true;
+                      },
                       child: Text("Login",
                           style: TextStyle(
                             fontSize: 20,

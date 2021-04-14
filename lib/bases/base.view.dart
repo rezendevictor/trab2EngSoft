@@ -8,6 +8,7 @@ import 'package:pokecenter/view/galeria.view.dart';
 import 'package:pokecenter/view/home.view.dart';
 import 'package:pokecenter/view/listagens.view.dart';
 import 'package:pokecenter/view/login.view.dart';
+import 'package:pokecenter/globals.dart' as globals;
 
 abstract class BaseViewStateful<Controller extends BaseController>
     extends StatefulWidget {
@@ -18,7 +19,7 @@ abstract class BaseViewStateful<Controller extends BaseController>
 
 abstract class BaseViewState<View extends BaseViewStateful>
     extends State<View> {
-  bool logado = true;
+
 
   String title() => null;
 
@@ -84,7 +85,7 @@ abstract class BaseViewState<View extends BaseViewStateful>
             onTap: () => {navigation(GaleriaView(), context)},
           ),
           Visibility(
-            visible: logado,
+            visible: globals.isLoggedIn,
             child: ListTile(
               leading: Icon(Icons.assignment_ind),
               title: Text('Cadastro de Usuários'),
@@ -92,7 +93,7 @@ abstract class BaseViewState<View extends BaseViewStateful>
             ),
           ),
           Visibility(
-            visible: logado,
+            visible: globals.isLoggedIn,
             child: ListTile(
               leading: Icon(Icons.house_siding_sharp),
               title: Text('Cadastro Endereços'),
@@ -100,7 +101,7 @@ abstract class BaseViewState<View extends BaseViewStateful>
             ),
           ),
           Visibility(
-            visible: logado,
+            visible: globals.isLoggedIn,
             child: ListTile(
               leading: Icon(Icons.book),
               title: Text('Agendamento'),
@@ -108,7 +109,7 @@ abstract class BaseViewState<View extends BaseViewStateful>
             ),
           ),
           Visibility(
-            visible: logado,
+            visible: globals.isLoggedIn,
             child: ListTile(
                     leading: Icon(Icons.list_alt),
                     title: Text('Listagens'),
