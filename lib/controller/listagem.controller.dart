@@ -14,8 +14,6 @@ class ListagemController extends BaseController {
   Stream<String> get categoriaAtual => _streamCategoria.stream;
 
   List<String> listasDisponiveis = [
-    "albums",
-    "todos",
     "Médicos",
     "Pacientes",
     "Funcionários",
@@ -23,9 +21,6 @@ class ListagemController extends BaseController {
     "Agendamentos",
     "Meus Agendamentos"
   ];
-
-//https://jsonplaceholder.typicode.com/todos/
-
 
   Future<Iterable> fetchListByCategory(String category) async{
     switch(category){
@@ -53,7 +48,7 @@ class ListagemController extends BaseController {
   }
 
   Future<Iterable> _getPacientes() async {
-    return parseBody(await http.get(Uri.http('localhost:3000', '/')));
+    return parseBody(await http.get(Uri.http('localhost:3000', '/auth/getPatients')));
   }
   Future<Iterable> _getEmployees() async {
     return parseBody(await http.get(Uri.http('localhost:3000', '/auth/getEmployees')));
