@@ -24,8 +24,7 @@ class _listagemViewState extends BaseViewState<ListagemView> {
   Widget body() {
     return Column(
       children: [
-
-        SizedBox(child: _streamLista()),
+        _selectionColumn(),
       ],
     );
   }
