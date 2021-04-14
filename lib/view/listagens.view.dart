@@ -1,5 +1,8 @@
+import 'dart:convert';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:pokecenter/bases/base.view.dart';
 import 'package:pokecenter/controller/listagem.controller.dart';
 
@@ -14,7 +17,8 @@ class ListagemView extends BaseViewStateful {
 class _listagemViewState extends BaseViewState<ListagemView> {
 
   ListagemController _controller = new ListagemController();
-
+  String selecaoAtual;
+  List<dynamic> listData = [];
   @override
   String title() => "Listagem";
 
@@ -24,9 +28,7 @@ class _listagemViewState extends BaseViewState<ListagemView> {
       children: [
         _selectionColumn(),
         Expanded(
-          child: SizedBox(child: Card(
-            child: _streamLista(),
-          )),
+          child: SizedBox(child: _streamLista()),
         ),
       ],
     );
@@ -35,15 +37,25 @@ class _listagemViewState extends BaseViewState<ListagemView> {
 
   Widget _streamLista() {
     return Container(
-      // child: _photosList(_controller.teste),
-      child: StreamBuilder(
-          initialData: _controller.teste,
-          stream: _controller.streamInfos,
-          builder: (context, snapshot) {
-            return _photosList(snapshot.data);
-          }
-      ),
+      child: _photosList(listData),
+      // child: StreamBuilder(
+      //     initialData: _controller.teste,
+      //     stream: _controller.streamInfos,
+      //     builder: (context, snapshot) {
+      //       return _photosList(snapshot.data);
+      //     }
+      // ),
     );
+  }
+
+  fetchListByCategory(String newValue) async {
+    Response response = await _controller.fetchListByCategory(newValue);
+    Iterable responseData = json.decode(response.body);
+
+    setState(() {
+      selecaoAtual = newValue;
+      listData = responseData;
+    });
   }
 
   Widget _selectionColumn(){
@@ -63,7 +75,7 @@ class _listagemViewState extends BaseViewState<ListagemView> {
               fontSize: 20),),
               Padding(
                   padding: EdgeInsets.only(left: 200),
-                  child: _streamSelecionarLista()),
+                  child: _selecionarLista(selecaoAtual)),
             ],
           ),
         ),
@@ -77,7 +89,7 @@ class _listagemViewState extends BaseViewState<ListagemView> {
     return StreamBuilder(
         stream: _controller.categoriaAtual,
         builder: (context, snapshot) {
-          return _selecionarLista(snapshot.data);
+          return _selecionarLista(selecaoAtual);
         }
     );
   }
@@ -96,7 +108,7 @@ class _listagemViewState extends BaseViewState<ListagemView> {
           height: 2,
           color: Colors.black,
         ),
-        onChanged: (String newValue) {_controller.categoriaSelecionada(newValue);},
+        onChanged: fetchListByCategory,
         items: _controller.listasDisponiveis
             .map<DropdownMenuItem<String>>((String value) {
           return DropdownMenuItem<String>(
@@ -108,18 +120,166 @@ class _listagemViewState extends BaseViewState<ListagemView> {
     );
   }
 
+  Widget _renderDoctor(item){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Nome: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Especialidade: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("CRM: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Cep: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Logradouro: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Bairro: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Cidade: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Estado: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Cidade: "+item['title']),
+        ),
+      ],
+    );
+  }
 
+  Widget _renderEmployee(item){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Nome: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Cep: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Logradouro: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Bairro: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Cidade: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Estado: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Cidade: "+item['title']),
+        ),
+      ],
+    );
+  }
+
+  Widget _renderPacient(item){
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Nome: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Email: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Peso: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Altura: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Cep: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Logradouro: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Bairro: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Cidade: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Estado: "+item['title']),
+        ),
+        Align(
+          alignment: Alignment.centerLeft,
+          child: Text("Cidade: "+item['title']),
+        ),
+      ],
+    );
+  }
+
+  Widget _renderItem(item){
+    switch(selecaoAtual){
+      case 'albums':
+      case 'Pacientes':
+        return _renderPacient(item);
+      case 'Médicos':
+      case 'todos':
+        return _renderDoctor(item);
+      case 'Endereços':
+        return _renderDoctor(item);
+      case 'Agendamentos':
+        return _renderDoctor(item);
+      case 'Meus Agendamentos':
+        return _renderDoctor(item);
+      default:
+        return _renderDoctor(item);
+    }
+  }
 
   Widget _photosList(List lista) {
     return Padding(
       padding: EdgeInsets.only(left:20.0, right: 20),
-      child: ListView.builder(
-          // gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 20, childAspectRatio: 3/2),
+      child: GridView.builder(
+          gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 20, childAspectRatio: 3/2),
           itemCount: lista.length,
           itemBuilder: (BuildContext context, int index) {
-            return new ListTile(
-              title: Text(
-                lista[index]
+            return new GridTile(
+              child: Card(
+                child: Padding(
+                  padding: EdgeInsets.only(left: 20, top: 20, bottom: 20),
+                  child: _renderItem(listData[index]),
+                )
               )
             );
           }),
