@@ -109,13 +109,13 @@ class _homeViewState extends BaseViewState {
             scrollDirection: Axis.horizontal,
             children: <Widget>[
               _card(_controller.rand_say(),"Oswald Cobblepot"),
-              _card(_controller.rand_say(),"Oswald Cobblepot"),
-              _card(_controller.rand_say(),"Oswald Cobblepot"),
-              _card(_controller.rand_say(),"Oswald Cobblepot"),
-              _card(_controller.rand_say(),"Oswald Cobblepot"),
-              _card(_controller.rand_say(),"Oswald Cobblepot"),
-              _card(_controller.rand_say(),"Oswald Cobblepot"),
-              _card(_controller.rand_say(),"Oswald Cobblepot"),
+              _card(_controller.rand_say(),"Jack Napier"),
+              _card(_controller.rand_say(),"Jonathan Crane"),
+              _card(_controller.rand_say(),"Ra's al Ghul"),
+              _card(_controller.rand_say(),"Victor Fries"),
+              _card(_controller.rand_say(),"Waylon Jones"),
+              _card(_controller.rand_say(),"Floyd Lawton"),
+              _card(_controller.rand_say(),"Simon Stagg"),
             ],
           ),
         ),
@@ -127,15 +127,13 @@ class _homeViewState extends BaseViewState {
     return Padding(
       padding: EdgeInsets.only(top: 8.0, left: 50,right: 50),
       child: Container(
-        height: 600.0,
+        height: 900.0,
         width: 240.0,
         decoration: BoxDecoration(
           color: Colors.transparent,
           shape: BoxShape.rectangle,
         ),
         child: ListTile(
-          leading: CircleAvatar(
-            backgroundImage: NetworkImage("https://static.wikia.nocookie.net/batman/images/c/ca/ThePenguinDannyDevito.jpg/revision/latest/scale-to-width-down/296?cb=20110723234214",scale: 0.2)),
           title: Text(
             review,
             style: TextStyle(
