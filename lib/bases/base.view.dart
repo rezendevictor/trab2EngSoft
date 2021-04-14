@@ -18,7 +18,7 @@ abstract class BaseViewStateful<Controller extends BaseController>
 
 abstract class BaseViewState<View extends BaseViewStateful>
     extends State<View> {
-  bool logado = false;
+  bool logado = true;
 
   String title() => null;
 
